@@ -18,7 +18,6 @@ COPY requirements.txt /srv/app/
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY app.py /srv/app/
-COPY www /srv/app/www
 
 RUN chown -R appuser:appuser /srv/app
 
