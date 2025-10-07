@@ -18,7 +18,11 @@ RUN useradd -m -s /bin/bash appuser && mkdir -p /srv/app /share/uploads && chown
 
 WORKDIR /srv/app
 COPY requirements.txt /srv/app/
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN python3 -m venv /opt/venv \
+ && /opt/venv/bin/pip install --upgrade pip \
+ && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt
+
+ENV PATH="/opt/venv/bin:$PATH"
 
 COPY app.py /srv/app/
 
