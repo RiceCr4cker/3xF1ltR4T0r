@@ -1,5 +1,5 @@
 # Use Debian slim (pick arm64/armhf tag on build if needed)
-FROM debian:12-slim
+FROM arm64v8/debian:12-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
