@@ -1,14 +1,17 @@
 # Use Debian slim (pick arm64/armhf tag on build if needed)
-FROM debian:12-slim
+FROM arm64v8/debian:12-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
     python3 python3-pip python3-setuptools python3-venv \
     curl ca-certificates iproute2 iw wireless-tools wpa_supplicant \
     network-manager \
     nmap tshark tcpdump arp-scan mtr netcat-openbsd \
     git unzip sudo \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
 
 # Create app user
 RUN useradd -m -s /bin/bash appuser && mkdir -p /srv/app /share/uploads && chown appuser:appuser /srv/app /share/uploads
